@@ -1,7 +1,7 @@
 5
 5
-2
+1
 5
-5
-100
-name
+3
+60
+kirill rozhnov
