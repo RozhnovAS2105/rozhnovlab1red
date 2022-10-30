@@ -25,13 +25,21 @@ string check_name(string name)
 }
 
 
-int prov_option(int x) 
+int prov_option(int min, int max)
 { // !x - proverka na tip dannyhpon
-	while (!x) {
-		cout << "\nVvedite chislo ot 1 do 8" << endl;
+	int x;
+	do
+	{
 		cin.clear();
-		cin.ignore(INT_MAX, '\n');
-	}
+		cin.ignore(10000, '\n');
+		cout << "\nType number (" << min << "-" << max << "):\n";
+		cin >> x;
+	} while (cin.fail() || x < min || x>max);
+	//while (!x) {
+		//cout << "\nVvedite chislo ot 1 do 8" << endl;
+		//cin.clear();
+		//cin.ignore(INT_MAX, '\n');
+	//}
 	return x;
 }
 
@@ -46,7 +54,7 @@ string status_check(bool x)
 
 }
 
-float check_cin(float x) 
+float check_cin(float x)
 {
 	while ((((cin >> x).fail()) || (cin.peek() != '\n')) || (x <= 0)) { // "||" - или
 		cout << "Oshibka!Vvedite chislo > 0\n" << endl;
@@ -172,13 +180,14 @@ int main()
 {
 	//setlocale(LC_ALL, "ru");
 	int option = -1;
+	cout << "PRESS ENTER";
 	Pipe p;
 	CS cs;
 	while (option) {
 		cout << "\n 1. truba 2. CS 3.Prosmotr obektov 4. izmenit trubu 5. izmenit CS 6.save 7.load 8.exit\n";
-		cin >> option; //ввод переменной
-		option = prov_option(option);
-		switch (option) { //так называемая тумбочка(без ящиков(case'ов))
+		//cin >> option; //ввод переменной
+		//option = prov_option(option);
+		switch (prov_option(1, 8)) { //так называемая тумбочка(без ящиков(case'ов))
 		case 1: {
 			addPipe(p);
 			break;
